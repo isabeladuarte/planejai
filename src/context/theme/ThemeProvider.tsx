@@ -9,9 +9,7 @@ export function ThemeProvider({ children }: PropsWithChildren) {
 			return localStorageTheme;
 		}
 
-		const systemPrefersDark = window.matchMedia(
-			'(prefers-color-scheme: dark)'
-		).matches;
+		const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 		return systemPrefersDark ? 'dark' : 'light';
 	});
