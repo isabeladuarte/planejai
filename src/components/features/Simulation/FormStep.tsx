@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, type LucideIcon } from 'lucide-react';
 import { Button } from '@/components/shared/Button';
 import { Input, type InputProps } from '@/components/shared/Input';
 import { useState, type SyntheticEvent } from 'react';
+import { formatCurrencyMask } from '@/utils/currency';
 
 export interface FormStepProps {
 	id: string;
@@ -36,11 +37,11 @@ export function FormStep({
 	const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
 		e.preventDefault();
 
-    if (!inputValue) {
-      return
-    }
+		if (!inputValue) {
+			return;
+		}
 
-		onNext()
+		onNext();
 	};
 
 	return (
@@ -54,9 +55,14 @@ export function FormStep({
 			</h3>
 			<form onSubmit={handleSubmit} className="flex flex-col gap-4">
 				<Input
-          {...inputProps}
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)} />
+					{...inputProps}
+					value={inputValue}
+					onChange={(e) => {
+						const isCurrency = inputProps.prefix === 'R$';
+						const value = e.target.value;
+						setInputValue(isCurrency ? formatCurrencyMask(value) : value);
+					}}
+				/>
 				<div className="flex flex-col gap-3 sm:flex-row sm:gap-6">
 					{!hideBackButton && (
 						<Button
@@ -73,7 +79,7 @@ export function FormStep({
 						onClick={onNext}
 						type="submit"
 						variant="primary"
-            disabled={!inputValue}
+						disabled={!inputValue}
 						className="order-1 flex-1 sm:order-2"
 					>
 						{submitButtonProps?.label ?? 'Próximo'}

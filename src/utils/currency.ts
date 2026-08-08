@@ -1,0 +1,17 @@
+// Funções utilitárias que vai fazer algo
+// Função para formatar o valor monetário
+
+export function formatCurrencyMask(value: string): string {
+  const digits = value.replace(/\D/g, '')
+
+  if (!digits) {
+    return ''
+  }
+
+  const number = parseInt(digits, 10) / 100
+
+  return number.toLocaleString('pt-BR', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
+}
