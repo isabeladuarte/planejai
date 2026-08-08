@@ -4,7 +4,7 @@ export type Theme = "light" | "dark"
 
 interface ThemeContextValue {
 	theme: Theme
-	toogleTheme: () => void
+	toggleTheme: () => void
 }
 
 export const ThemeContext = createContext<ThemeContextValue | undefined>(

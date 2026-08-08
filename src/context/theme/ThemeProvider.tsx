@@ -21,9 +21,9 @@ export function ThemeProvider({ children }: PropsWithChildren) {
 		localStorage.setItem('theme', theme);
 	}, [theme]);
 
-	const toogleTheme = () => {
+	const toggleTheme = () => {
 		setTheme((currentTheme) => (currentTheme === 'light' ? 'dark' : 'light'));
 	};
 
-	return <ThemeContext.Provider value={{ theme, toogleTheme }}>{children}</ThemeContext.Provider>;
+	return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
 }
