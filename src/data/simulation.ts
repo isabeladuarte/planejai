@@ -7,8 +7,9 @@ import {
   Wallet,
 } from 'lucide-react'
 
-import type { FormStepProps } from '../components/features/Simulation/FormStep'
 import type { InsightData } from '@/services/aiService'
+
+import type { FormStepProps } from '../components/features/Simulation/FormStep'
 
 export const simulationFormSteps = [
   {
@@ -92,10 +93,7 @@ export type SimulationFormData = Record<
   string
 >
 
-// data/simulation.ts
 export type SimulationRecord = SimulationFormData & {
   id: string
   insight?: InsightData
 }
-
-
